@@ -1,0 +1,141 @@
+古诗
+&lt;&lt;Sympath for the peasants&gt;&gt;
+<p>Hoeing millet in mid-day heat</p>
+<p>Sweat dripping to the earth beneath</p>
+<p>Do you know the food on your plate</p>
+<p>Each grian was hard-earned</p>
+&lt;&lt;<i>A TRANQUIL NIGHT</i>&gt;&gt;
+<p><i>Abed ,I see a silver light</i></p>
+<p><i>I wonder if it's frost aground</i></p>
+<p><i>Looking up ,I find the moon bright</i></p>
+<p><i>Bowing, in homesickness i'm drowned</i></p>
+电影
+mysql> use hh_mysql
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> create table dy(
+    -> id int(5) auto_increment primary key,
+    -> name varchar(30) not null,
+    -> nf varchar(20) not null,
+    -> daoyan varchar(50) not null,
+    -> pingfen varchar(30) not null);
+mysql> select *from dy;
++----+-------------------+---------+--------------+---------+
+| id | name              | nianfen | daoyan       | pingfen |
++----+-------------------+---------+--------------+---------+
+|  1 | yiren             | 2016    | chengdaoming | 7       |
+|  2 | xzhanjing         | 2005    | lian         | 8       |
+|  3 | shimianmaifu      | 2007    | fengxiaogang | 9       |
+|  4 | fuchouzhe         | 2010    | luyisi       | 9.5     |
+|  5 | fuchouzhelianmeng | 2011    | luyier       | 9.7     |
++----+-------------------+---------+--------------+---------+
+5 rows in set (0.04 sec)
+mysql> select * from dy where name like "%fuchou%";
++----+-------------------+---------+--------+---------+
+| id | name              | nianfen | daoyan | pingfen |
++----+-------------------+---------+--------+---------+
+|  4 | fuchouzhe         | 2010    | luyisi | 9.5     |
+|  5 | fuchouzhelianmeng | 2011    | luyier | 9.7     |
++----+-------------------+---------+--------+---------+
+2 rows in set (0.05 sec)
+mysql> select *from dy where daoyan like "%lu%";
++----+-------------------+---------+--------+---------+
+| id | name              | nianfen | daoyan | pingfen |
++----+-------------------+---------+--------+---------+
+|  4 | fuchouzhe         | 2010    | luyisi | 9.5     |
+|  5 | fuchouzhelianmeng | 2011    | luyier | 9.7     |
++----+-------------------+---------+--------+---------+
+2 rows in set (0.00 sec)
+mysql> select nianfen from dy;
++---------+
+| nianfen |
++---------+
+| 2016    |
+| 2005    |
+| 2007    |
+| 2010    |
+| 2011    |
++---------+
+5 rows in set (0.00 sec)
+
+mysql> select * from dy where nianfen="2016";
++----+-------+---------+--------------+---------+
+| id | name  | nianfen | daoyan       | pingfen |
++----+-------+---------+--------------+---------+
+|  1 | yiren | 2016    | chengdaoming | 7       |
++----+-------+---------+--------------+---------+
+1 row in set (0.00 sec)
+mysql> select * from dy where dy.pingfen in(select max(pingfen) from dy);
++----+-------------------+---------+--------+---------+
+| id | name              | nianfen | daoyan | pingfen |
++----+-------------------+---------+--------+---------+
+|  5 | fuchouzhelianmeng | 2011    | luyier | 9.7     |
++----+-------------------+---------+--------+---------+
+1 row in set (0.12 sec)
+最大值emp.dept
+mysql> select max(empno),emp.deptno from emp,dept where emp.deptno=dept.deptno group by deptno;
++------------+--------+
+| max(empno) | deptno |
++------------+--------+
+|       7839 | 10     |
+|       7902 | 20     |
+|       7900 | 30     |
++------------+--------+
+3 rows in set (0.05 sec)
+收藏
+mysql> create table sc( id int(6) auto_increment primary key, name varchar(30) not null);
+Query OK, 0 rows affected (0.15 sec)
+
+mysql> insert into sc(id,name)
+    -> values(1,"ciqi"),
+    -> (2,"zuanshi"),
+    -> (3,"wenwu");
+Query OK, 3 rows affected (0.09 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> select * from sc;
++----+---------+
+| id | name    |
++----+---------+
+|  1 | ciqi    |
+|  2 | zuanshi |
+|  3 | wenwu   |
++----+---------+
+3 rows in set (0.00 sec)
+
+mysql> insert into sc(name) values("huangjin");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from sc;
++----+----------+
+| id | name     |
++----+----------+
+|  1 | ciqi     |
+|  2 | zuanshi  |
+|  3 | wenwu    |
+|  4 | huangjin |
++----+----------+
+4 rows in set (0.00 sec)
+
+mysql> delete from sc where name="zuanshi";
+Query OK, 1 row affected (0.13 sec)
+
+mysql> select * from sc;
++----+----------+
+| id | name     |
++----+----------+
+|  1 | ciqi     |
+|  3 | wenwu    |
+|  4 | huangjin |
++----+----------+
+3 rows in set (0.00 sec)
+
+mysql> select * from sc where id=4;
++----+----------+
+| id | name     |
++----+----------+
+|  4 | huangjin |
++----+----------+
+1 row in set (0.10 sec)
